@@ -1,0 +1,102 @@
+/* Reset some default styles */
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+    width: 320px;
+}
+
+h1 {
+    color: #007BFF;
+    font-size: 24px;
+    margin: 0 0 20px;
+}
+
+.input-container {
+    margin-bottom: 20px;
+}
+
+#text-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.result-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;
+    position: relative;
+}
+
+#qr-code img {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+}
+
+#download-button {
+    display: none;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: auto;
+    display: inline-block; /* Make the button a block element for better alignment */
+}
+
+#download-button:hover {
+    background-color: #0056b3;
+}
+
+#download-button:active {
+    background-color: #0042a7;
+}
+
+#download-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Media query for mobile phones */
+@media (max-width: 480px) {
+    .container {
+        width: 100%; /* Full width for smaller screens */
+    }
+
+    .result-container {
+        position: relative;
+    }
+
+    #download-button {
+        position: static; /* Display as a normal inline element on mobile */
+        margin-top: 20px; /* Add some margin for spacing */
+    }
+}

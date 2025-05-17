@@ -6,22 +6,120 @@
     <link rel="stylesheet" href="styles.css">
     <title>QR Code Generator</title>
     <link rel="icon" type="image/x-icon" href="qr-genrator.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>QR Code Generator</h1>
-        <div class="input-container">
-            <input type="text" id="text-input" placeholder="Enter text">
-        </div>
-        <div class="result-container">
-            <div id="qr-code">
-                <!-- QR code will be inserted here -->
-            </div>
-            <a id="download-button" download="qrcode.png">Download QR Code</a>
-        </div>
+    <div class="bg-animation">
+        <div class="bg-1"></div>
+        <div class="bg-2"></div>
+        <div class="bg-3"></div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+    
+    <div class="main-wrapper">
+        <div class="container glass">
+            <div class="header">
+                <h1><i class="fas fa-qrcode"></i> QR Code Generator</h1>
+            </div>
 
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="url">URL</button>
+            <button class="tab-btn" data-tab="text">Text</button>
+            <button class="tab-btn" data-tab="contact">Contact</button>
+            <button class="tab-btn" data-tab="wifi">WiFi</button>
+        </div>
+        
+        <div class="tab-content active" data-tab="url">
+            <div class="input-container">
+                <input type="text" id="url-input" placeholder="Enter website URL" class="main-input">
+            </div>
+        </div>
+        
+        <div class="tab-content" data-tab="text">
+            <div class="input-container">
+                <textarea id="text-input" placeholder="Enter your text message" class="main-input"></textarea>
+            </div>
+        </div>
+        
+        <div class="tab-content" data-tab="contact">
+            <div class="input-container">
+                <input type="text" id="contact-name" placeholder="Name" class="sub-input">
+                <input type="text" id="contact-email" placeholder="Email" class="sub-input">
+                <input type="text" id="contact-phone" placeholder="Phone Number" class="sub-input">
+                <input type="text" id="contact-address" placeholder="Address (optional)" class="sub-input">
+            </div>
+        </div>
+        
+        <div class="tab-content" data-tab="wifi">
+            <div class="input-container">
+                <input type="text" id="wifi-ssid" placeholder="Network Name (SSID)" class="sub-input">
+                <input type="password" id="wifi-password" placeholder="Password" class="sub-input">
+                <select id="wifi-encryption" class="sub-input">
+                    <option value="WPA">WPA/WPA2</option>
+                    <option value="WEP">WEP</option>
+                    <option value="nopass">No Password</option>
+                </select>
+                <label class="checkbox-container">
+                    <input type="checkbox" id="wifi-hidden">
+                    <span class="checkmark"></span>
+                    Hidden Network
+                </label>
+            </div>
+        </div>
+
+        <div class="options-container">
+            <div class="option">
+                <label for="qr-size">Size:</label>
+                <select id="qr-size">
+                    <option value="200">Small</option>
+                    <option value="300" selected>Medium</option>
+                    <option value="400">Large</option>
+                </select>
+            </div>
+            <div class="option">
+                <label for="qr-color">Color:</label>
+                <input type="color" id="qr-color" value="#000000">
+            </div>
+            <div class="option">
+                <label for="qr-bg-color">Background:</label>
+                <input type="color" id="qr-bg-color" value="#FFFFFF">
+            </div>
+            <div class="option">
+                <label for="error-correction">Error Correction:</label>
+                <select id="error-correction">
+                    <option value="L">Low (7%)</option>
+                    <option value="M" selected>Medium (15%)</option>
+                    <option value="Q">Quartile (25%)</option>
+                    <option value="H">High (30%)</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button id="generate-btn" class="primary-btn"><i class="fas fa-sync-alt"></i> Generate QR</button>
+            <button id="reset-btn" class="secondary-btn"><i class="fas fa-trash-alt"></i> Reset</button>
+        </div>
+        
+        <div class="result-container">
+            <div id="qr-code-container">
+                <div id="qr-code">
+                    <!-- QR code will be inserted here -->
+                </div>
+            </div>
+            <div class="download-options">
+                <button id="download-png" class="download-btn"><i class="fas fa-download"></i> PNG</button>
+                <button id="download-svg" class="download-btn"><i class="fas fa-download"></i> SVG</button>
+                <button id="download-pdf" class="download-btn"><i class="fas fa-download"></i> PDF</button>
+                <button id="share-btn" class="share-btn"><i class="fas fa-share-alt"></i> Share</button>
+            </div>        </div>
+    </div>
+    </div>
+
+    <footer class="footer glass">
+        <p>Made with <i class="fas fa-heart"></i> | <a href="https://github.com/ashish-suman-sharma" target="_blank">View on GitHub</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

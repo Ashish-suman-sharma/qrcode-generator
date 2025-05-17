@@ -1,13 +1,15 @@
-# QR Code Generator
+# Futuristic QR Code Generator
 
-Generate QR codes easily with this simple web-based tool.
+Generate QR codes easily with this modern, futuristic web-based tool.
 
 ## Features
 
-- **User-Friendly Interface**: Intuitive design for a seamless user experience.
-- **Dynamic QR Codes**: Input any text or URL, and instantly generate a QR code.
-- **Real-Time Preview**: See the QR code update in real-time as you type.
-- **Download QR Code**: Easily download the generated QR code for your use.
+- **Modern Futuristic UI**: Sleek glass-morphism design with animated background effects.
+- **Multiple QR Types**: Generate QR codes for URLs, text messages, contact information, and WiFi networks.
+- **Customization Options**: Adjust size, colors, and error correction levels of your QR codes.
+- **Multi-Format Export**: Download your QR codes in PNG, SVG, or PDF formats.
+- **Share Option**: Directly share your QR codes with others (on supported browsers).
+- **Responsive Design**: Works perfectly on desktop and mobile devices.
 
 ## Usage
 

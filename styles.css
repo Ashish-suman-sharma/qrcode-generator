@@ -1,102 +1,550 @@
 /* Reset some default styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700&display=swap');
+
+:root {
+    --primary-color: #6C63FF;
+    --primary-dark: #4c46b6;
+    --secondary-color: #FF6584;
+    --bg-color: #0B0E18;
+    --text-color: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --success-color: #4CAF50;
+    --warning-color: #FFC107;
+    --error-color: #FF5252;
+    --border-radius: 12px;
+    --card-bg: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body, html {
+    height: 100%;
     margin: 0;
     padding: 0;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f7f7f7;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    padding-bottom: 70px; /* Add padding at the bottom for the footer */
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px 0;
+    overflow-y: auto;
+}
+
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
     overflow: hidden;
+}
+
+.bg-1, .bg-2, .bg-3 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.5;
+}
+
+.bg-1 {
+    top: -150px;
+    left: -150px;
+    width: 600px;
+    height: 600px;
+    background: linear-gradient(to right, #6C63FF, #4C46B6);
+    animation: float 20s infinite alternate;
+}
+
+.bg-2 {
+    bottom: -150px;
+    right: -150px;
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(to right, #FF6584, #FF4081);
+    animation: float 15s infinite alternate-reverse;
+}
+
+.bg-3 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    background: linear-gradient(to right, #00BCD4, #3F51B5);
+    opacity: 0.3;
+    animation: pulse 15s infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+    }
+    100% {
+        transform: translate(50px, 50px) rotate(45deg) scale(1.2);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.3;
+    }
+}
+
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--glass-shadow);
 }
 
 .container {
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
+    flex-direction: column;
     align-items: center;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    padding: 20px;
+    padding: 30px;
     text-align: center;
-    width: 320px;
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    transition: var(--transition);
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 85vh; /* Set a maximum height for larger screens */
+}
+
+.header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 h1 {
-    color: #007BFF;
-    font-size: 24px;
-    margin: 0 0 20px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(108, 99, 255, 0.7);
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 30px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 8px 15px;
+    transition: var(--transition);
+}
+
+.tab-btn.active {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 0 15px rgba(108, 99, 255, 0.7);
+}
+
+.tab-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.tab-content {
+    display: none;
+    width: 100%;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .input-container {
     margin-bottom: 20px;
+    width: 100%;
 }
 
-#text-input {
+.main-input, .sub-input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius);
     font-size: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.main-input:focus, .sub-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.3);
+}
+
+textarea.main-input {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.options-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 48%;
+}
+
+.option label {
+    margin-right: 10px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.option select, .option input[type="color"] {
+    flex: 1;
+    padding: 8px;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.primary-btn, .secondary-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.primary-btn {
+    background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(108, 99, 255, 0.6);
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+    color: var(--text-secondary);
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--primary-color);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
 }
 
 .result-container {
-    text-align: center;
+    width: 100%;
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
+    flex-direction: column;
     align-items: center;
+    margin-top: 20px;
+}
+
+#qr-code-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    transition: var(--transition);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    overflow: auto;
+}
+
+#qr-code {
     position: relative;
+    min-height: 200px;
+    min-width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #qr-code img {
     max-width: 100%;
     height: auto;
-    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    object-fit: contain;
+    max-height: 400px; /* Limit the height for larger QR codes */
 }
 
-#download-button {
-    display: none;
+#qr-code .placeholder {
+    color: var(--text-secondary);
+    text-align: center;
+    font-size: 14px;
+}
+
+#qr-code .placeholder i {
+    font-size: 48px;
+    margin-bottom: 10px;
+    opacity: 0.7;
+}
+
+.download-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 10px; /* Add padding at the bottom for better visibility */
+}
+
+.download-btn, .share-btn {
     padding: 10px 15px;
-    background-color: #007BFF;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s;
-    width: auto;
-    display: inline-block; /* Make the button a block element for better alignment */
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
 }
 
-#download-button:hover {
-    background-color: #0056b3;
+.download-btn:hover, .share-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
 }
 
-#download-button:active {
-    background-color: #0042a7;
+.share-btn {
+    background: var(--secondary-color);
+    color: white;
 }
 
-#download-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+.share-btn:hover {
+    background: #ff4d70;
+    box-shadow: 0 5px 15px rgba(255, 101, 132, 0.4);
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-align: center;
+    z-index: 10;
+}
+
+.footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer a:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+.footer i {
+    color: var(--secondary-color);
+}
+
+/* Toast notification */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 14px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, -10px);
 }
 
 /* Media query for mobile phones */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .container {
-        width: 100%; /* Full width for smaller screens */
+        width: 95%;
+        padding: 20px;
+        max-height: 80vh;
+        margin-bottom: 60px; /* Add more margin for the footer */
     }
-
-    .result-container {
-        position: relative;
+    
+    .option {
+        width: 100%;
     }
-
-    #download-button {
-        position: static; /* Display as a normal inline element on mobile */
-        margin-top: 20px; /* Add some margin for spacing */
+    
+    .tabs {
+        gap: 5px;
     }
+    
+    .tab-btn {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .download-options {
+        justify-content: space-between;
+    }
+    
+    .download-btn, .share-btn {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+    
+    #qr-code img {
+        max-width: 100%;
+        height: auto;
+    }
+}
 }
